@@ -1,0 +1,54 @@
+{
+    "name": "benjamimwalker/command-validator",
+    "description": "A package to validate arguments and options on laravel commands.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "benjamim",
+            "email": "bhaskdelta2@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.20.0",
+        "pestphp/pest": "^2.36|^3.7.4",
+        "pestphp/pest-plugin-type-coverage": "^2.8.7|^3.2.3",
+        "phpstan/phpstan": "^1.12.16",
+        "rector/rector": "^1.2.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "CommandValidator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "refacto": "rector",
+        "lint": "pint",
+        "test:refacto": "rector --dry-run",
+        "test:lint": "pint --test",
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "pest --colors=always --coverage --min=88.9",
+        "test": [
+            "@test:refacto",
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
+    }
+}
