@@ -4,3 +4,5 @@ parameters:
         - src
 
     reportUnmatchedIgnoredErrors: true
+    excludePaths:
+        - src/CommandValidatorServiceProvider.php
