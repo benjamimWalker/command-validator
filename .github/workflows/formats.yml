@@ -42,8 +42,8 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update --dev
-          composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update --dev -W
+          composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist -W
 
       - name: Coding Style Checks
         run: composer test:lint
