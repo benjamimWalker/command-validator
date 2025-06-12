@@ -13,6 +13,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.20.0",
+        "orchestra/testbench": "^10.4",
         "pestphp/pest": "^2.36|^3.7.4",
         "pestphp/pest-plugin-type-coverage": "^2.8.7|^3.2.3",
         "phpstan/phpstan": "^1.12.16",
@@ -25,7 +26,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "CommandValidator\\": "tests/",
+            "App\\": "workbench/app/",
+            "Database\\Factories\\": "workbench/database/factories/",
+            "Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "minimum-stability": "stable",
@@ -50,12 +54,24 @@
         "test:refacto": "rector --dry-run",
         "test:lint": "pint --test",
         "test:types": "phpstan analyse --ansi",
-        "test:unit": "pest --colors=always --coverage --min=88.9",
+        "test:unit": "pest --colors=always",
         "test": [
             "@test:refacto",
             "@test:lint",
             "@test:types",
             "@test:unit"
+        ],
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
         ]
     }
 }

@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
-final class CommandValidatorServiceProvider extends ServiceProvider
+final class CommandValidatorTestServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands(HuntDevilCommand::class);
+        }
         Event::listen(CommandStarting::class, function (CommandStarting $event): void {
             $command = Artisan::all()[$event->command] ?? null;
 
