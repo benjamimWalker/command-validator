@@ -41,6 +41,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update --dev
           composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist && \
           composer update --no-interaction --prefer-dist --with symfony/console:${{ matrix.symfony }} && \
           composer update --no-interaction --prefer-dist --with \
