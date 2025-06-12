@@ -11,6 +11,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.2]
+        laravel: [10.*, 11.*, 12.*]
         dependency-version: [prefer-lowest, prefer-stable]
 
     name: Formats P${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
