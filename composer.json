@@ -62,10 +62,6 @@
             "@test:types",
             "@test:unit"
         ],
-        "post-autoload-dump": [
-            "@clear",
-            "@prepare"
-        ],
         "serve": [
             "Composer\\Config::disableProcessTimeout",
             "@build",
