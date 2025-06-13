@@ -44,8 +44,8 @@ jobs:
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update --dev -W
           composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist -W && \
-          composer update --no-interaction --prefer-dist --with -W symfony/console:${{ matrix.symfony }} && \
-          composer update --no-interaction --prefer-dist --with -W \
+          composer update --no-interaction --prefer-dist -W --with  symfony/console:${{ matrix.symfony }} && \
+          composer update --no-interaction --prefer-dist -W --with  \
             symfony/console:${{ matrix.symfony }} \
             symfony/finder:${{ matrix.symfony }}
 
