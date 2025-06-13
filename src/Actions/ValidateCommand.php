@@ -6,6 +6,7 @@ namespace CommandValidator\Actions;
 
 use CommandValidator\Attributes\Validatable;
 use Illuminate\Console\Command;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use ReflectionClass;
@@ -34,7 +35,7 @@ final class ValidateCommand
             foreach ($validator->errors()->all() as $error) {
                 $command->error($error);
             }
-            if (app()->runningUnitTests()) {
+            if (app(Application::class)->runningUnitTests()) {
                 throw new ValidationException($validator);
             }
             exit(1);
