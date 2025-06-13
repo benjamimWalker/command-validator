@@ -31,11 +31,13 @@ final class ValidateCommand
             $rules
         );
 
+        /** @var Application $app */
+        $app = app(Application::class);
         if ($validator->fails()) {
             foreach ($validator->errors()->all() as $error) {
                 $command->error($error);
             }
-            if (app(Application::class)->runningUnitTests()) {
+            if ($app->runningUnitTests()) {
                 throw new ValidationException($validator);
             }
             exit(1);
